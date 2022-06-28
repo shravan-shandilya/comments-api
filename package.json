@@ -5,8 +5,6 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon ./index.js",
-    "prod": "pm2 start ./index.js",
     "db:seed:run": "npx knex seed:run",
     "db:migrate:up": "npx knex migrate:up --knexfile ./database/knexfile.js",
     "db:migrate:down": "npx knex migrate:down --knexfile ./database/knexfile.js",
