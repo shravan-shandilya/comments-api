@@ -3,8 +3,10 @@ import helmet from "helmet";
 import cors from "cors";
 import { handleError } from "./errors.js";
 import { logger } from "./utils/logger.js";
+import { router } from "./router/index.js";
+import { APP } from "./config.js";
 
-const port = 3000;
+const port = APP.PORT;
 const MODULE = "(index.js)";
 
 (async () => {
@@ -16,11 +18,8 @@ const MODULE = "(index.js)";
   app.options("*", cors());
   app.use(cors());
 
-  // dummy ping
-  app.get("/ping", (req, res) => {
-    logger.debug(`received a request ${req.path}`);
-    res.send("pong!");
-  });
+  // attach router
+  app.use(router);
 
   // not found handler
   app.all("*", (req, res) => {
