@@ -1,0 +1,30 @@
+{
+  "name": "ghost-api",
+  "version": "0.0.1",
+  "description": "backend for ghost's coding challenge",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shravan-shandilya/ghost-api.git"
+  },
+  "author": "Shravan Shandilya",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/shravan-shandilya/ghost-api/issues"
+  },
+  "homepage": "https://github.com/shravan-shandilya/ghost-api#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "helmet": "^5.1.0",
+    "winston": "^3.7.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
