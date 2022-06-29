@@ -5,9 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "db:seed:run": "npx knex seed:run --knexfile ./database/knexfile.js",
-    "db:migrate:up": "npx knex migrate:up --knexfile ./database/knexfile.js",
-    "db:migrate:down": "npx knex migrate:down --knexfile ./database/knexfile.js",
+    "db:seed:run": "npx knex seed:run --knexfile ./database/knexfile.js --debug",
+    "db:migrate:up": "npx knex migrate:up --knexfile ./database/knexfile.js --debug",
+    "db:migrate:down": "npx knex migrate:down --knexfile ./database/knexfile.js --debug",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -27,6 +27,7 @@
     "helmet": "^5.1.0",
     "knex": "^2.1.0",
     "pg": "^8.7.3",
+    "uuid": "^8.3.2",
     "winston": "^3.7.2"
   },
   "devDependencies": {

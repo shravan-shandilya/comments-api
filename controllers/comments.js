@@ -1,5 +1,20 @@
 import { commentsRepository } from "../database/repositories/index.js";
-import { createResponse } from "./response.js";
+import { CommentNotFoundError } from "../errors.js";
+import { createResponse } from "../utils/response.js";
+import events from "../events/index.js";
+
+async function getComment(req, res, next) {
+  try {
+    let commentId = req.params.id;
+    let comment = await commentsRepository.getComment(commentId);
+
+    return comment
+      ? res.send(createResponse(true, { comment }, null))
+      : next(CommentNotFoundError);
+  } catch (err) {
+    return next(err);
+  }
+}
 
 async function getComments(req, res, next) {
   try {
@@ -13,11 +28,13 @@ async function getComments(req, res, next) {
 async function postComment(req, res, next) {
   try {
     const { user_id, content, parent } = req.body;
+
     let id = await commentsRepository.createComment(user_id, content, parent);
-    return res.send(createResponse(true, { id: id[0]["id"] }, null));
+    events.broadcast("comment_added", { id });
+    return res.send(createResponse(true, { id }, null));
   } catch (err) {
     return next(err);
   }
 }
 
-export { getComments, postComment };
+export { getComment, getComments, postComment };

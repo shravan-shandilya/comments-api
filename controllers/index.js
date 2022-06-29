@@ -1,7 +1,9 @@
-import { getComments, postComment } from "./comments.js";
+import { getComment, getComments, postComment } from "./comments.js";
 import { getPing } from "./ping.js";
+import { postVote } from "./vote.js";
 
 export default {
   pingController: { getPing },
-  commentsController: { getComments, postComment },
+  commentsController: { getComment, getComments, postComment },
+  votesController: { postVote },
 };
