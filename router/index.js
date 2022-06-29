@@ -7,6 +7,7 @@ import {
 } from "../utils/validator.js";
 
 import controllers from "../controllers/index.js";
+import events from "../events/index.js";
 
 router.get("/ping", controllers.pingController.getPing);
 router.get("/comments", controllers.commentsController.getComments);
@@ -21,5 +22,7 @@ router.post(
   controllers.commentsController.postComment
 );
 router.post("/votes", validatePostVote, controllers.votesController.postVote);
+
+router.get("/events", events.subscribe);
 
 export { router };
