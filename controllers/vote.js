@@ -3,7 +3,8 @@ import {
   commentsRepository,
   votesRepository,
 } from "../database/repositories/index.js";
-import { createResponse } from "./response.js";
+import { createResponse } from "../utils/response.js";
+import events from "../events/index.js";
 
 async function postVote(req, res, next) {
   try {
@@ -29,6 +30,8 @@ async function postVote(req, res, next) {
       diff["upvote"],
       diff["downvote"]
     );
+
+    events.broadcast("vote_added", { id: voteId });
 
     return res.send(createResponse(true, { id: voteId }, null));
   } catch (err) {

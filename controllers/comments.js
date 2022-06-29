@@ -1,6 +1,6 @@
 import { commentsRepository } from "../database/repositories/index.js";
 import { CommentNotFoundError } from "../errors.js";
-import { createResponse } from "./response.js";
+import { createResponse } from "../utils/response.js";
 import events from "../events/index.js";
 
 async function getComment(req, res, next) {

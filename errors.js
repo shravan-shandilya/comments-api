@@ -1,5 +1,5 @@
 import { logger } from "./utils/logger.js";
-import { createResponse } from "./controllers/response.js";
+import { createResponse } from "./utils/response.js";
 const MODULE = "(errors.js)";
 
 class GhostError extends Error {
