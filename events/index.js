@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { logger } from "../utils/logger.js";
+
 let clients = [];
 let event = { type: null, data: null };
 const MODULE = "(events/index.js)";
@@ -10,6 +11,7 @@ function subscribe(req, res) {
   res.setHeader("Connection", "keep-alive");
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("X-Accel-Buffering", "no");
   res.flushHeaders();
 
   const data = `data: ${JSON.stringify(event)}\n\n`;
