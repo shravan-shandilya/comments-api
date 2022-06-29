@@ -8,11 +8,12 @@ class GhostError extends Error {
     this.status = status;
   }
 }
+
 const UserNotFoundError = new GhostError("user not found", 404);
+const CommentNotFoundError = new GhostError("comment not found", 404);
 
 function handleError(err, req, res, next) {
-  logger.error(`${MODULE} encountered an error while serving ${req.path}`);
-  logger.error(err);
+  logger.error(`${MODULE} encountered an error while serving ${req.path}`, err);
   return err instanceof GhostError
     ? res
         .status(err.status)
@@ -24,4 +25,4 @@ function handleError(err, req, res, next) {
       );
 }
 
-export { handleError, GhostError, UserNotFoundError };
+export { handleError, GhostError, CommentNotFoundError, UserNotFoundError };
