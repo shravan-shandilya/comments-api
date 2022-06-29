@@ -3,9 +3,11 @@ import { logger } from "../../utils/logger.js";
 import { UserNotFoundError } from "../../errors.js";
 const MODULE = "(repositories/comment.js)";
 
-async function createComment(user_id, content) {
+async function createComment(user_id, content, parent) {
   try {
-    let comment_id = await db("comments").insert({ user_id, content }, ["id"]);
+    let comment_id = await db("comments").insert({ user_id, content, parent }, [
+      "id",
+    ]);
     return comment_id;
   } catch (err) {
     logger.error(`${MODULE} database query failed with error ${err.message}`);

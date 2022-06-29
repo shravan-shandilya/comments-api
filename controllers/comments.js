@@ -12,9 +12,8 @@ async function getComments(req, res, next) {
 
 async function postComment(req, res, next) {
   try {
-    const user_id = req.body.user_id;
-    const content = req.body.content;
-    let id = await commentsRepository.createComment(user_id, content);
+    const { user_id, content, parent } = req.body;
+    let id = await commentsRepository.createComment(user_id, content, parent);
     return res.send(createResponse(true, { id: id[0]["id"] }, null));
   } catch (err) {
     return next(err);
