@@ -23,13 +23,14 @@ async function fetchComments() {
       .select(
         "comments.id",
         "content",
-        "comments.created_at",
-        "comments.updated_at",
         db.raw(
-          `json_build_object('id', "user_id", 'fname', "fname", 'sname', "sname", 'display_picture', "display_picture") as "author"`
-        )
+          `json_build_object('id', "user_id", 'fname', "fname", 'sname', "sname",'display_picture',"display_picture") as "author"`
+        ),
+        "comments.created_at",
+        "comments.updated_at"
       )
-      .join("users", "comments.user_id", "=", "users.id");
+      .join("users", "comments.user_id", "=", "users.id")
+      .orderBy("comments.created_at", "desc");
 
     return comments;
   } catch (err) {
