@@ -1,5 +1,23 @@
 # Comments API
 
+## Features ✨
+
+- REST APIs in MVC pattern for fetching and posting comments/upvotes
+- Comments support 1-level nesting
+- Realtime events when new comments and votes are added
+- Database schema migration setup
+- Simple deploy script
+
+## Technologies 🧰
+
+- Node as the JS runtime
+- Express as the web application framework
+- PostgreSQL for database
+- Knex as the SQL query builder and schema migration tool
+- Server Sent Events for real time event notification
+
+# Documentation
+
 ## Standard Response
 
 All API endpoints returns the following standard response. `success` indicates whether the operation was successful or not. `data` will contain result of the API call and `error` will contain the error object when the operation fails.
@@ -88,7 +106,7 @@ Posts a comment from a user.
 
 #### Sample Request Body
 
-Ideally `user_id` will be derived from the authentication headers of the request. However, since that is out of scope, we just have to pass it as one of the body params. `content` is the actual comment data. `parent` should always be set to `-1` as we currently dont support nesting.
+Ideally `user_id` will be derived from the authentication headers of the request. However, since that is out of scope, we just have to pass it as one of the body params. `content` is the actual comment data. `parent` should be set appropriately.
 
 ```
 {
@@ -146,15 +164,10 @@ Records the upvote/downvote against a comment.
 
 Streams the `comment_added` and `vote_added` events to subscribed client using Server Sent Events.
 
-#### Sample Event Message
+#### Testing
 
-`id` is the identifier of the newly added comment/vote.
+Use the following `curl` command to open up the connection to `/events` endpoint. And, add a new comment or an upvote to see the new event that was sent by the server
 
 ```
-{
-  "type": "comment_added/vote_added",
-  "data": {
-    "id": 3
-  }
-}
+curl -H Accept:text/event-stream https://api.thoughtscoop.com/events
 ```
