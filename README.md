@@ -1,5 +1,7 @@
 # Comments API
 
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/466187-39d30ba5-a218-4d1b-b854-0166f8225b1c?action=collection%2Ffork&collection-url=entityId%3D466187-39d30ba5-a218-4d1b-b854-0166f8225b1c%26entityType%3Dcollection%26workspaceId%3Def5ca40b-e740-4e6e-b374-f5421a4b5752)
+
 ## Features ✨
 
 - REST APIs in MVC pattern for fetching and posting comments/upvotes
